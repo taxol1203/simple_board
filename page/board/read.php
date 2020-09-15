@@ -10,7 +10,7 @@
     <link rel = "stylesheet" type = "text/css" href="/css/jquery-ui.css" />
     <script type="text/javascript" src = "/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src = "/js/jquery-ui.js"></script>
-    <script type="text/javascript" scr = "/js/common.js"></script>
+    <script type="text/javascript" src = "/js/common.js"></script>
 </head>
 
 <body>
@@ -55,12 +55,13 @@
             <div class = "dap_to comt_edit"><?php echo nl2br($reply['content']);?></div>
             <div class = "dap_to rep_me"><?php echo $reply['date'];?></div>
             <div class = "rep_me rep_menu">
+                <!-- what's mean herf = "#" ?-->
                 <a class = "dat_edit_bt" href="#"> 수정 </a>
                 <a class = "dat_delete_bt" href="#"> 삭제 </a>
             </div>
             <!-- 댓글 수정 폼 dialog -->
             <div class = "dat_edit">
-                <form method="post" action="rep_modify_ok.php">
+                <form method="post" action= "reply_modify_ok.php">
                     <input type = "hidden" name = "rno" value = "<?php echo $reply['idx']; ?>" /> 
                     <input type = "hidden" name = "b_no" value = "<?php echo $bno; ?>">
                     <input type = "password" name = "pw" class = "dap_sm" placeholder="비밀번호"/>
@@ -71,7 +72,7 @@
             </div>
             
             <!-- 댓글 삭제 비밀번호 확인 -->
-            <div class = "dat_delete">
+            <div class = 'dat_delete'>
                 <form method = "post" action = "reply_delete.php">
                     <input type = "hidden" name = "rno" value = "<?php echo $reply['idx']; ?>" />
                     <input type = "hidden" name = "b_no" value = "<?php echo $bno; ?>">

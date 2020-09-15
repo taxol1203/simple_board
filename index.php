@@ -34,7 +34,9 @@
                 if(strlen($title) > 30){
                     $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]);
                 }
-
+                //댓글 개수 세기
+                $sql2 = mq("select * from reply where con_num = $idx");
+                $rep_count = mysqli_num_rows($sql2);
             ?>
         <tbody>
             <tr>
@@ -48,7 +50,9 @@
                         }
                     else{ ?> 
                         <a href="/page/board/read.php?idx=<?php echo $board["idx"];?>"><?php echo $title; 
-                    }?> </a></td>
+                    }?> 
+                    <span class ="re_ct"> [ <?php echo $rep_count; ?> ] </span>
+                    </a></td>
                 <td width="120"><?php echo $name ?></td>
                 <td width="100"><?php echo $date?></td>
                 <td width="100"><?php echo $hit ?></td>

@@ -200,3 +200,9 @@ ul li {
 #foot_box {
 	height: 50px; 
 }
+
+/* 댓글 개수 */
+.re_ct{
+	font-weight: bold;
+	color: blue;
+}
