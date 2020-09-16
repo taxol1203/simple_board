@@ -30,6 +30,11 @@
             <?php echo $board['name']; ?> <?php echo $board['date']; ?> 조회: <?php echo $board['hit']; ?>
                 <div id = "bo_line"></div>
         </div>
+        <div>
+            파일 : <a href="../../upload/<?php echo $board['file']; ?>"download>
+            <?php echo $board['file']; ?>
+            </a>
+        </div>
         <div id="bo_content">
             <?php echo nl2br("$board[content]"); ?>   <!-- n12br : 한 줄 띄우기를 html의 /br로 변환해줌 -->
         </div>
@@ -99,7 +104,5 @@
 </div> <!-- 댓글 불러오기 끝 -->
 
 <div id = "foot_box"> </div>
-
-
 </body>
 </html>

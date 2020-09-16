@@ -1,6 +1,7 @@
 <?php
-
 include $_SERVER['DOCUMENT_ROOT']."/db.php";
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 //include 'password.php';
 
 //각 변수에 write.php에서 가져온 input 값들을 저장한다
@@ -18,8 +19,14 @@ if(isset($_POST['lockpost'])){
     $lo_post = '0';
 }
 
+$tmpfile = $_FILES['b_file']['tmp_name'];   //change b_file name to temporary file name
+$o_name = $_FILES['b_file']['name'];        //put origianl filename
+$filename = iconv("UTF-8", "EUC-KR", $_FILES['b_file']['name']);    //prevent for broked korean file name
+$folder = "../../upload/".$filename;
+move_uploaded_file($tmpfile, $folder);      //왜 임시 파일 명으로 업로드 하지?
+
 if($username && $userpw && $title && $content){
-    $sql_return = mq("insert into board(name,pw,title,content,date, lock_post) values('".$username."','".$userpw."','".$title."','".$content."','".$date."','".$lo_post."')"); 
+    $sql_return = mq("insert into board(name,pw,title,content,date, lock_post, file) values('".$username."','".$userpw."','".$title."','".$content."','".$date."','".$lo_post."' , '".$o_name."' )"); 
      if($sql_return){
         echo "<script>
         alert('글쓰기 완료되었습니다.');

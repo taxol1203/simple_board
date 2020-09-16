@@ -206,3 +206,19 @@ ul li {
 	font-weight: bold;
 	color: blue;
 }
+
+/*하단 페이지*/
+#page_num {
+	font-size: 14px;
+	margin-left: 260px;
+	margin-top:30px; 
+}
+#page_num ul li {
+	float: left;
+	margin-left: 10px; 
+	text-align: center;
+}
+.fo_re {
+	font-weight: bold;
+	color:red;
+}
