@@ -9,5 +9,5 @@
         global $db;     //global은 외부에서 선언 된 $sql을 함수 내에서 사용하게 해준다
         return $db->query($sql);
     }
-    ?>
+?>
     

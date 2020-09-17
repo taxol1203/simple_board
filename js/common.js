@@ -13,9 +13,9 @@ $(document).ready(function(){
     });
     $(".dat_delete_bt").click(function(){
         //댓글 삭제 버튼 클릭시 동작
-        var obj1 = $(this).closest(".dap_lo").find("dat_delete");
+        var obj1 = $(this).closest(".dap_lo").find(".dat_delete");
         obj1.dialog({
-            modal: true,
+            modal:true,
             width:400,
             //height:200,
             title:"댓글 삭제 확인"

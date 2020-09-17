@@ -14,6 +14,19 @@
     <div id = "board_area">
         <h1> 탁솔 게시판 </h1>
         <h4> 자유롭게 글을 쓸 수 있는 게시판입니다.</h4>
+
+        <!-- 검색기능 -->
+        <div id = "search_box">
+            <form action = "/page/board/search_result.php" method = "get">
+                <select name="catgo">
+                    <option value = "title">제목</option>
+                    <option value = "name">글쓴이</option>
+                    <option value = "content">내용</option>
+                </select>
+                <input type = "text" name = "search" size = "40" required = "required" /> 
+                <button>검색</button>
+            </form>
+        </div>
         <!-- 테이블 함수, thead: 테이블 제목, tbody: 테이블 내용, tr : td, th태그를 행으로 묶어줌 th: 제목, td: 실제 데이터-->
         <table class="list-table">
             <thead>
@@ -28,9 +41,9 @@
         <!-- php로 db에 연결을 해 query문을 전달 하고, while문을 통해 변수 하나씩 받아, table에 넣으며 loop -->
         <?php
             //page 값이 있으면 get으로 받아옴. else 1
-                if(isset($_GET['page'])){
-                    $page = $_GET['page'];
-                }
+            if(isset($_GET['page'])){
+                $page = $_GET['page'];
+            }
             else{
                 $page = 1;
             }
@@ -64,37 +77,37 @@
                 //댓글 개수 세기
                 $sql2 = mq("select * from reply where con_num = $idx");
                 $rep_count = mysqli_num_rows($sql2);
-            ?>
-        <tbody>
-            <tr>
-                <td width="70"> <?php echo $idx ?></td>
-                <td width="500"> <?php
-                    //get lock image
-                    $lockimg = "<img src = '/img/lock.png' alt='lock' width = '20' height = '20' />";
-                    //만약 1이면 ch_read로 이동하고, 사진을 띄운다
-                    if($board['lock_post'] == "1"){
-                        ?> 
-                        <a href = '/page/board/ck_read.php?idx=<?php echo $board["idx"];?>'> 
-                        <?php echo $title, $lockimg;
-                    }else{ 
-                        $boardtime = $board['date'];
-                        $timeNow = date("Y-m-d");
-                        
-                        if($boardtime == $timeNow){
-                            $img = "<img src = 'img/new.png' alt = 'new' title='new' />";
-                        }else{
-                            $img = "";
-                        }?> 
-                        <a href="/page/board/read.php?idx=<?php echo $board["idx"];?>"><?php echo $title; 
-                    }?> 
-                    <span class ="re_ct"> [ <?php echo $rep_count; ?> ]<?php echo $img; ?> </span>
-                    </a>
-                </td>
-                <td width="120"><?php echo $name ?></td>
-                <td width="100"><?php echo $date?></td>
-                <td width="100"><?php echo $hit ?></td>
-            </tr>
-        </tbody>
+        ?>
+                <tbody>
+                    <tr>
+                        <td width="70"> <?php echo $idx ?></td>
+                        <td width="500"> <?php
+                            //get lock image
+                            $lockimg = "<img src = '/img/lock.png' alt='lock' width = '20' height = '20' />";
+                            //만약 1이면 ch_read로 이동하고, 사진을 띄운다
+                            $boardtime = $board['date'];
+                            $timeNow = date("Y-m-d");
+                            if($boardtime == $timeNow){
+                                $img = "<img src = 'img/new.png' alt = 'new' title='new' />";
+                            }else{
+                                $img = "";
+                            }
+                            if($board['lock_post'] == "1"){
+                                ?> 
+                                <a href = '/page/board/ck_read.php?idx=<?php echo $board["idx"];?>'> 
+                                <?php echo $title, $lockimg;
+                            }else{ 
+                                ?> 
+                                <a href="/page/board/read.php?idx=<?php echo $board["idx"];?>"><?php echo $title; 
+                            }?> 
+                            <span class ="re_ct"> [ <?php echo $rep_count; ?> ]<?php echo $img; ?> </span>
+                            </a>
+                        </td>
+                        <td width="120"><?php echo $name ?></td>
+                        <td width="100"><?php echo $date?></td>
+                        <td width="100"><?php echo $hit ?></td>
+                    </tr>
+                </tbody>
         <!--여기가 while의 끝 } -->
         <?php } ?>
         </table>
@@ -108,26 +121,26 @@
                         echo "<li><a href='?page = 1'>처음</a></li>";
                         //set 이전 button and if clicked page minus 
                         $pre = $page - 1;
-                        echo "<li><a href='?page = $pre'>이전</a></li>";
+                        echo "<li><a href='?page=".$pre."'>이전</a></li>";
                     } 
                     //for문 반복문을 사용하여, 초기값을 블록의 시작번호를 조건으로 블록시작번호가 마지박블록보다 작거나 같을 때까지 $i를 반복시킨다
                     for($i = $block_start; $i <= $block_end; $i++){
                         if($page == $i){
                             echo "<li class='fo_re'>[$i]</li>";
                         }else{
-                            echo "<li><a href = '?page = $i'>[$i]</a></li>";
+                            echo "<li><a href = '?page=".$i."'>[$i]</a></li>";
                         }
                     }
                     if($block_num >= $total_block){
 
                     }else{ //만약 현재 블록이 블록 총개수보다 작다면
                         $next = $page + 1;
-                        echo "<li><a href= '?page = $next '> 다음 </a></li>";
+                        echo "<li><a href= '?page=".$next."'> 다음 </a></li>";
                     }
                     if($page >= $total_page){
                         echo "<li class = 'fo_re'> 마지막 </li>";
                     }else{
-                        echo "<li><a href = '?page=$total_page'>마지막</a></li>";
+                        echo "<li><a href = '?page=".$total_page."'>마지막</a></li>";
                     }
                 ?>
             </ul>
