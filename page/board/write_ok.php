@@ -11,7 +11,7 @@
     //각 변수에 write.php에서 가져온 input 값들을 저장한다
     $hit = 0;
     $username = $_POST['name'];
-    //userpw = password_hash($_POST['pw'], PASSWORD_DEFAULT);
+    //$userpw = password_hash($_POST['pw'], PASSWORD_DEFAULT);
     $userpw = $_POST['pw'];
     $title = $_POST['title'];
     $content = $_POST['content'];
