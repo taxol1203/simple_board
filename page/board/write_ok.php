@@ -29,6 +29,8 @@
     $folder = "../../upload/".$filename;
     move_uploaded_file($tmpfile, $folder);      //왜 임시 파일 명으로 업로드 하지?
 
+    $mqq = mq("alter table board auto_increment = 1");
+
     if( ($username && $userpw && $title && $content) || $android){
         $sql_return = mq("insert into board(name,pw,title,content,date, lock_post, file) values('".$username."','".$userpw."','".$title."','".$content."','".$date."','".$lo_post."' , '".$o_name."' )"); 
         if($sql_return){
