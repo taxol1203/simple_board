@@ -36,7 +36,8 @@
         if($sql_return){
             echo "<script>
             alert('글쓰기 완료되었습니다.');
-            location.href='/index.php';
+            //location.href='/index.php';
+            location.href='/page/forAndroid/notification.php';
             </script>";
         }else{
             echo "<script>

@@ -48,6 +48,11 @@ ul li {
 	margin-top:20px;
 	right: 0;
 }
+#notification_btn {
+	position: absolute;
+	margin-top:20px;
+	right: 0;
+}
 /* 아래는 write.php */
 #board_write {
 	width:900px;
