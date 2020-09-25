@@ -148,9 +148,10 @@
         <div id="write_btn">
             <a href="/page/board/write.php"><button>글쓰기</button></a>
         </div>
+        <!-- 
         <div id="notification_btn">
             <a href="/page/forAndroid/notification.php"><button>알람테스트</button></a>
-        </div>
+        </div>  -->
     </div>
 </body>
 </html>
